@@ -9,6 +9,23 @@
 
 const double EPS = 1e-15;
 
+struct point {
+    double x = 0, y = 0;
+
+    point(double x1, double y1) {
+        x = x1;
+        y = y1;
+    }
+
+    bool operator<(const point &p) const {
+        return x < p.x - EPS || abs(x - p.x) < EPS && y < p.y - EPS;
+    }
+
+    bool operator==(const point &p) const {
+        return x == p.x and y == p.y;
+    }
+};
+
 int main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
@@ -17,7 +34,7 @@ int main() {
     int n = 0;
     long double ans = 0;
     std::cin >> n;
-    std::vector<point> pt;
+    std::vector <point> pt;
     for (int i = 0; i < n; ++i) {
         int x = 0, y = 0;
         std::cin >> x >> y;
